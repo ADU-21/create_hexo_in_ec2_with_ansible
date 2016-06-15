@@ -1,0 +1,56 @@
+---   
+
+  - name: Install the nodejs rpm from a remote repo
+    sudo: yes
+    yum:
+      name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      state: present
+
+  - name: Ensure nodejs installed
+    sudo: yes
+    yum:
+      name: nodejs
+      enablerepo: epel
+      state: latest
+
+  - name: Ensure npm installed
+    sudo: yes
+    yum:
+      name: npm
+      enablerepo: epel
+      state: latest
+
+  - name: Ensure hexo installed
+    sudo: yes
+    npm:
+      name: hexo-cli
+      global: yes
+      state: present
+
+  - name: Deployer hexo
+    command: hexo init blog
+
+  - name: Npm install
+    command: npm install
+    args:
+      chdir: /home/ec2-user/blog
+
+  - name: Copy Systemd service to ec2
+    sudo: yes
+    copy:
+      src: ./files/hexo.service
+      dest: /usr/lib/systemd/system/
+
+  - name: Systemd daemon reload
+    sudo: yes
+    command: systemctl daemon-reload
+
+  - name: System enable hexo
+    sudo: yes
+    command: systemctl enable hexo
+
+  - name: Start hexo Server
+    sudo: yes
+    service:
+      name: hexo
+      state: started

@@ -1,0 +1,10 @@
+---
+
+aws_access_key: AKIAIC4DEBITSF5DCCMQ
+aws_secret_key: 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
+keypair: devenv-key
+instance_type: t2.micro
+security_group: web-sg
+image: ami-d1315fb1
+region: us-west-1
+count: 1

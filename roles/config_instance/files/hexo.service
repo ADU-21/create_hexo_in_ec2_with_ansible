@@ -1,0 +1,14 @@
+[Unit]
+Description=Hexo Server
+
+[Service]
+Type=simple
+ExecStart=/bin/hexo server
+ExecStop=/bin/kill -TERM $MAINPID
+ExecReload=/bin/kill -TERM $MAINPID
+Restart=on-failure
+WorkingDirectory=/home/ec2-user/blog
+
+[Install]
+WantesBy=multi-user.target
+WantedBy=graphical.target
