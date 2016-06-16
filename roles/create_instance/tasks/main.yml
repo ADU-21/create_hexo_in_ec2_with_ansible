@@ -38,7 +38,3 @@
   delay: 12
   retries: 100 # 20 minutes max
 
-  # - name: wait sometimes
-  #   local_action:
-  #       module: pause
-  #       seconds: 150

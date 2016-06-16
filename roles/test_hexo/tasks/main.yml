@@ -1,0 +1,7 @@
+---
+
+  - action: uri url=http://0.0.0.0:4000 return_content=yes
+    register: webpage
+
+  - fail: msg='service is not good'
+    when: "'hexo' not in webpage.content"

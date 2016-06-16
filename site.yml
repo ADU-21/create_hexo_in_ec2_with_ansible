@@ -1,13 +1,11 @@
 ---
 
 - hosts: local
-  #connection: local
   gather_facts: False
-
   roles:
     - create_instance
-      #- config_instance
 
 - hosts: test
   roles:
     - config_instance
+    - test_hexo

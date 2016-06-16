@@ -1,0 +1,5 @@
+---
+packages:
+    - nodejs
+    - npm
+repo: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm

@@ -3,22 +3,16 @@
   - name: Install the nodejs rpm from a remote repo
     sudo: yes
     yum:
-      name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      name: "{{ repo }}"
       state: present
 
-  - name: Ensure nodejs installed
+  - name: Ensure nodejs and npm installed
     sudo: yes
     yum:
-      name: nodejs
+      name: "{{ item }}"
       enablerepo: epel
       state: latest
-
-  - name: Ensure npm installed
-    sudo: yes
-    yum:
-      name: npm
-      enablerepo: epel
-      state: latest
+    with_items: "{{ packages }}"
 
   - name: Ensure hexo installed
     sudo: yes
