@@ -9,8 +9,8 @@ export AWS_ACCESS_KEY_ID='AK123'
 export AWS_SECRET_ACCESS_KEY='abc123'
 ```
 ## the way
-```
 当你运行这个ansible playbook 的时候，它会依次执行
+```
 create instance 
 ssh instance 
 install npm and nodejs on that instance
