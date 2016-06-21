@@ -1,11 +1,15 @@
 ---
 
 - hosts: local
+  connection: local
   gather_facts: False
   roles:
-    - create_instance
+    # - create_instance
+    - create_instance_with_cloudformation
+    # - create_s3
+
 
 - hosts: test
   roles:
-    - config_instance
-    - test_hexo
+      - config_instance
+      - test_hexo

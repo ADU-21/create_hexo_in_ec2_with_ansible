@@ -1,0 +1,30 @@
+{
+"AWSTemplateFormatVersion" : "2010-09-09",
+ "Description" : "Ec2 block device mapping",
+ "Resources" : {
+   "MyEC2Instance" : {
+     "Type" : "AWS::EC2::Instance",
+     "Properties" : {
+       "AvailabilityZone" : "us-west-1a",
+       "SecurityGroupIds" : ["sg-e6972a82"],
+       "InstanceType" : "t2.micro",
+       "ImageId" : "ami-d1315fb1",
+       "KeyName" : "devenv-key",
+       "BlockDeviceMappings" : [
+         {
+           "DeviceName" : "/dev/xvda",
+             "Ebs" : {
+               "VolumeType" : "gp2",
+               "DeleteOnTermination" : "false",
+               "VolumeSize" : "8"
+             }
+         },
+         {
+           "DeviceName" : "/dev/sdk",
+           "NoDevice" : {}
+         }
+       ]
+     }
+ }
+}
+}

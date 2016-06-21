@@ -22,19 +22,19 @@
       #ansible_ssh_user=ec2-user
 
 
-- name: Wait for SSH on come up
-  local_action: wait_for host={{ ec2.instances.0.public_ip }} port=22 timeout=320 state=started
+# - name: Wait for SSH on come up
+#   local_action: wait_for host={{ ec2.instances.0.public_ip }} port=22 timeout=320 state=started
 
-- name: Wait for authentication to be enable
-  local_action: >
-      shell
-      ssh {{ ec2.instances.0.public_ip }}
-      -l ec2-user
-      -i ~/.ssh/devenv-key.pem
-      -oPreferredAuthentications=publickey
-      -oStrictHostKeyChecking=no
-  register: passwordless_ssh_connection
-  until: passwordless_ssh_connection|success
-  delay: 12
-  retries: 100 # 20 minutes max
+# - name: Wait for authentication to be enable
+#   local_action: >
+#       shell
+#       ssh {{ ec2.instances.0.public_ip }}
+#       -l ec2-user
+#       -i ~/.ssh/devenv-key.pem
+#       -oPreferredAuthentications=publickey
+#       -oStrictHostKeyChecking=no
+#   register: passwordless_ssh_connection
+#   until: passwordless_ssh_connection|success
+#   delay: 12
+#   retries: 100 # 20 minutes max
 

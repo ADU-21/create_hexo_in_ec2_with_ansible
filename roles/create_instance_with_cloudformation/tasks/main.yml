@@ -1,0 +1,26 @@
+---
+
+
+- name: launch ansible cloudformation example
+  cloudformation:
+    stack_name: "ansible-cloudformation"
+    state: "present"
+    region: "us-west-1"
+    disable_rollback: true
+    template: "EC2-template.json"
+  register: ec2
+
+- name: debug
+  debug: msg="{{ ec2.stack_resources.0.physical_resource_id }}"
+
+- name: Get public ip by instance id
+  shell: aws ec2 describe-instances --instance-id "{{ ec2.stack_resources.0.physical_resource_id }}" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+  register: ip
+
+- name: debug ip
+  debug: msg="{{ ip.stdout_lines.0 }}"
+
+- name: Add new instance to the host group
+  local_action: add_host >
+      hostname={{ ip.stdout_lines.0 }}
+      groupname=test
