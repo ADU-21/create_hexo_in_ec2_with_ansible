@@ -1,6 +1,11 @@
----   
+---
+  - name: Install the git
+    sudo: yes
+    yum:
+      name: git
+      state: present
 
-  - name: Install the nodejs rpm from a remote repo
+  - name: add a remote repo
     sudo: yes
     yum:
       name: "{{ repo }}"
@@ -21,13 +26,18 @@
       global: yes
       state: present
 
-  - name: Deployer hexo
-    command: hexo init blog
+#  - name: Deployer hexo
+#    command: hexo init blog
+#
+#  - name: Npm install
+#    command: npm install
+#    args:
+#      chdir: /home/ec2-user/blog
 
-  - name: Npm install
-    command: npm install
-    args:
-      chdir: /home/ec2-user/blog
+  - name: Clone the blog
+    git:
+      repo: https://github.com/ADU-21/blog.git
+      dest: /home/ec2-user/blog
 
   - name: Copy Systemd service to ec2
     sudo: yes
