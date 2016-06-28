@@ -6,7 +6,6 @@
   roles:
     # - create_instance
     - create_instance_with_cloudformation
-    # - create_s3
 
 
 - hosts: test

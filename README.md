@@ -12,10 +12,11 @@ export AWS_SECRET_ACCESS_KEY='abc123'
 ## the way
 当你运行这个ansible playbook 的时候，它会依次执行
 ```
-create instance 
+create instance by cloudformation
 ssh instance 
 install npm and nodejs on that instance
 install hexo on instance
+clone my blog from https://github.com/ADU-21/blog.git
 make hexo a Systemd on that instance
 start the hexo on that instance
 test the hexo if it can work success
